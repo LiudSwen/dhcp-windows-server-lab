@@ -10,7 +10,7 @@ Ce laboratoire a été réalisé dans un environnement virtualisé et vise à d�
 
 ---
 
-## Captures (dans /resources/windows)
+## Captures (dans /ressources/debian)
 
 1. **Serveur DHCP Debian — service actif**  
    ![DHCP Server](ressources/debian/srv-dhcp-status.png)
