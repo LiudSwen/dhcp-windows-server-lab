@@ -1,37 +1,16 @@
-# DHCP Lab — Windows Server (Scope + Reservation)
+# DHCP Server — Windows Server (isc-dhcp-server)
 
-Mini-lab réalisé en VM pour démontrer la mise en place d’un serveur DHCP sous Windows Server :
-- création d’une étendue IPv4
-- distribution dynamique d’adresses
-- réservation (IP fixe basée sur l’adresse MAC)
-- vérifications côté clients
+🎯 Objectif
+Mettre en place un serveur DHCP fonctionnel sous Debian capable :
+- d’attribuer automatiquement des adresses IP à des clients
+- de gérer une plage d’adresses DHCP
+- de configurer une réservation d’adresse IP par adresse MAC
 
-## Objectifs
-- Déployer un rôle **DHCP Server** sur Windows Server
-- Configurer un réseau `172.20.0.0/24`
-- Créer une étendue DHCP `172.20.0.100 → 172.20.0.200`
-- Réserver l’adresse `172.20.0.10` pour un client identifié par MAC
+Ce laboratoire a été réalisé dans un environnement virtualisé et vise à démontrer des compétences concrètes en administration systèmes et réseaux (Windows).
 
-## Environnement
-- Hyperviseur : VirtualBox
-- Réseau : **Internal Network** `intnet`
-- Serveur : Windows Server (VM) — `SRV-DHCP`
-- Clients : Windows (VM) — Client 1 et Client 2
+---
 
-## Configuration réalisée
-
-### Serveur DHCP
-- Nom d’hôte : `SRV-DHCP`
-- IP statique : `172.20.0.1/24`
-- Rôle : DHCP Server installé + post-deployment configuration effectuée
-- Étendue : `172.20.0.100` à `172.20.0.200` (réseau `172.20.0.0/24`)
-- Réservation : IP `172.20.0.10` liée à la MAC du client réservé
-
-### Clients
-- Client 1 : obtient une IP dynamique dans l’étendue
-- Client 2 : obtient **toujours** `172.20.0.10` via réservation, même après `release/renew`
-
-## Preuves (captures)
+## Captures (dans /resources/windows)
 1. **Scope DHCP (serveur)**  
    ![Scope DHCP](ressources/windows/01-dhcp-server-scope.png)
 
@@ -43,11 +22,3 @@ Mini-lab réalisé en VM pour démontrer la mise en place d’un serveur DHCP so
 
 4. **Réservation côté serveur**  
    ![Reservation](ressources/windows/04-server-reservation.png)
-
-## Tests effectués
-Sur les clients :
-```
-ipconfig /release
-ipconfig /renew
-ipconfig /all
-```
